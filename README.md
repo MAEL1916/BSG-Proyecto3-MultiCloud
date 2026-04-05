@@ -29,7 +29,7 @@ Este proyecto implementa un **pipeline de datos multi-cloud** que transfiere dat
 
 ##  Arquitectura
 
-![Arquitectura Multi-Cloud](docs/arquitectura.png)
+![Arquitectura Multi-Cloud](docs/screenshots/Diagrama%20de%20Flujo%20proyecto%203.jpg)
 
 **Componentes:**
 - **Origen:** Azure Blob Storage (Container: `source-data`)
