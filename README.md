@@ -1,21 +1,24 @@
-#  Proyecto 3: Pipeline Multi-Cloud (Azure Blob Storage → Google BigQuery)
-**Autor:** Elias Martinez
-**Curso:** Data Engineering - BSG 2026  
-##  Tabla de Contenidos
+# Proyecto 3: Pipeline Multi-Cloud (Azure Blob Storage → Google BigQuery)
 
-1. [Descripción del Proyecto](#-descripción-del-proyecto)
-2. [Arquitectura](#-arquitectura)
-3. [Justificación Técnica](#-justificación-técnica-cambio-de-aws-redshift-a-gcp-bigquery)
-4. [Prerequisitos](#-prerequisitos)
-5. [Configuración Paso a Paso](#-configuración-paso-a-paso)
+**Autor:** Elias Martinez  
+**Curso:** Data Engineering - BSG 2026  
+
+## Tabla de Contenidos
+
+1. [Descripción del Proyecto](#descripción-del-proyecto)
+2. [Arquitectura](#arquitectura)
+3. [Justificación Técnica](#justificación-técnica-cambio-de-aws-redshift-a-gcp-bigquery)
+4. [Prerequisitos](#prerequisitos)
+5. [Configuración Paso a Paso](#configuración-paso-a-paso)
    - [Paso 1: Azure Blob Storage](#paso-1-configurar-azure-blob-storage)
    - [Paso 2: Google Cloud Platform](#paso-2-configurar-google-cloud-platform-gcp)
    - [Paso 3: Configuración Local](#paso-3-configuración-local)
    - [Paso 4: Ejecutar Pipeline](#paso-4-ejecutar-el-pipeline)
    - [Paso 5: Validación](#paso-5-validación-de-datos)
-6. [Troubleshooting](#-troubleshooting)
-7. [Estructura del Proyecto](#-estructura-del-proyecto)
-8. [Video Demostrativo](#-video-demostrativo)
+6. [Troubleshooting](#troubleshooting)
+7. [Estructura del Proyecto](#estructura-del-proyecto)
+
+---
 
 ## Descripción del Proyecto
 
@@ -23,13 +26,11 @@ Este proyecto implementa un **pipeline de datos multi-cloud** que transfiere dat
 
 **Dataset:** Spotify Wrapped 2025 - Top 50 Artistas Globales (50 registros, 11 columnas)
 
-**Flujo de datos:**
-
 ---
 
-##  Arquitectura
+## Arquitectura
 
-![Arquitectura Multi-Cloud](docs/screenshots/diagrama-flujo-proyecto3.jpg)
+![Arquitectura del Pipeline](docs/screenshots/diagrama-flujo-proyecto3.jpg)
 
 **Componentes:**
 - **Origen:** Azure Blob Storage (Container: `source-data`)
@@ -43,7 +44,7 @@ Este proyecto implementa un **pipeline de datos multi-cloud** que transfiere dat
 
 ---
 
-##  Justificación Técnica: Cambio de AWS Redshift a GCP BigQuery
+## Justificación Técnica: Cambio de AWS Redshift a GCP BigQuery
 
 **Problema encontrado:**
 - Amazon Redshift Serverless requiere habilitación manual de la cuenta AWS que no se completó a tiempo
@@ -55,17 +56,17 @@ Este proyecto implementa un **pipeline de datos multi-cloud** que transfiere dat
 - La arquitectura sigue siendo **Multi-Cloud** (Azure + GCP)
 
 **Ventajas de BigQuery:**
--  Serverless nativo (sin configuración de infraestructura)
--  Auto-escalable
--  Pricing por consulta (pay-as-you-go)
--  Integración nativa con Python SDK
--  No requiere aprovisionamiento de clusters
+- Serverless nativo (sin configuración de infraestructura)
+- Auto-escalable
+- Pricing por consulta (pay-as-you-go)
+- Integración nativa con Python SDK
+- No requiere aprovisionamiento de clusters
 
 ---
 
-##  Prerequisitos
+## Prerequisitos
 
-### **Software necesario:**
+### Software necesario:
 
 | Software | Versión mínima | Instalación |
 |----------|----------------|-------------|
@@ -74,12 +75,12 @@ Este proyecto implementa un **pipeline de datos multi-cloud** que transfiere dat
 | Google Cloud SDK | Última | [cloud.google.com/sdk](https://cloud.google.com/sdk/docs/install) |
 | Git | 2.0+ | [git-scm.com](https://git-scm.com/downloads) |
 
-### **Cuentas requeridas:**
--  Cuenta de **Microsoft Azure** (con suscripción activa)
--  Cuenta de **Google Cloud Platform** (con proyecto creado)
--  Cuenta de **GitHub** (para clonar repositorio)
+### Cuentas requeridas:
+- Cuenta de **Microsoft Azure** (con suscripción activa)
+- Cuenta de **Google Cloud Platform** (con proyecto creado)
+- Cuenta de **GitHub** (para clonar repositorio)
 
-### **Verificar instalaciones:**
+### Verificar instalaciones:
 
 **Mac/Linux:**
 ```bash
@@ -87,13 +88,14 @@ python3 --version
 pip3 --version
 gcloud --version
 git --version
+Windows:
 
-**Windows**
+cmd
 python --version
 pip --version
 gcloud --version
 git --version
-
+Configuración Paso a Paso
 
 PASO 1: Configurar Azure Blob Storage
 
@@ -109,7 +111,7 @@ Region: East US
 Performance: Standard
 Redundancy: LRS (Locally-redundant storage)
 Clic en "Review + create" → "Create"
-Captura de referencia:
+Capturas de referencia:
 
 ![Azure Portal Home](docs/screenshots/azure-console.png)
 
@@ -124,9 +126,13 @@ Clic en "+ Container"
 Nombre: source-data
 Public access level: Private
 Clic en "Create"
-Captura de referencia:
+Capturas de referencia:
 
 ![Containers List](docs/screenshots/container.png)
+
+Vista detallada del container creado:
+
+![Container Detail](docs/screenshots/container-detail.png)
 
 1.3 Subir archivo CSV
 
@@ -153,11 +159,15 @@ Clic en el selector de proyectos (arriba)
 Clic en "New Project"
 Nombre del proyecto: tu nombre único
 Clic en "Create"
-Captura de referencia:
+Capturas de referencia:
 
 ![GCP Console Home](docs/screenshots/gcp-console.png)
 
 ![Crear Proyecto GCP](docs/screenshots/gcp-crear-proyecto.png)
+
+Confirmación del proyecto creado:
+
+![Crear Proyecto GCP - Confirmación](docs/screenshots/crear-proyecto-gcp-1.png)
 
 ![Proyecto Seleccionado](docs/screenshots/proyecto-consola-gcp.png)
 
@@ -179,17 +189,17 @@ Menú hamburguesa (☰) → "BigQuery"
 En el explorador (panel izquierdo), clic en tu proyecto
 Clic en los 3 puntos → "Create dataset"
 Completa:
-Dataset ID: Nombre de tu proyecto
+Dataset ID: proyecto3_dw
 Location: us-central1
 Default table expiration: Never
 Clic en "Create dataset"
 Opción B: Desde Terminal (recomendado)
 
 bash
-bq mk --dataset --location=us-central1 PROYECTO_ID: Nombre de tu proyecto
-Reemplaza PROYECTO_ID con tu ID de proyecto GCP.
+bq mk --dataset --location=us-central1 PROYECTO_ID:proyecto3_dw
+Nota: Reemplaza PROYECTO_ID con tu ID de proyecto GCP.
 
-Captura de referencia:
+Capturas de referencia:
 
 ![BigQuery Workspace](docs/screenshots/bigquery-gcp.png)
 
@@ -211,22 +221,22 @@ gcloud config set project PROYECTO_ID
 
 # Establecer proyecto de cuotas
 gcloud auth application-default set-quota-project PROYECTO_ID
-
 Windows:
+
 cmd
 gcloud auth login
 gcloud auth application-default login
 gcloud config set project PROYECTO_ID
 gcloud auth application-default set-quota-project PROYECTO_ID
-Reemplaza PROYECTO_ID con tu ID de proyecto (ej: proyecto3-mael-1916)
+Nota: Reemplaza PROYECTO_ID con tu ID de proyecto (ej: proyecto3-mael-1916)
 
-Captura de referencia:
+Capturas de referencia:
 
 ![Terminal gcloud auth](docs/screenshots/gcp-terminal.png)
 
 ![Terminal set project](docs/screenshots/gcp-project-configure.png)
 
-2.5 Crear Service Account (Opcional, si necesitas JSON key)
+2.5 Crear Service Account (Opcional)
 
 Menú hamburguesa (☰) → "IAM & Admin" → "Service Accounts"
 Clic en "+ Create Service Account"
@@ -238,7 +248,7 @@ Asigna roles:
 BigQuery Data Editor
 BigQuery Job User
 Clic en "Done"
-Captura de referencia:
+Capturas de referencia:
 
 ![IAM Service Accounts](docs/screenshots/iam-cuentas-servicios.png)
 
@@ -252,17 +262,18 @@ Mac/Linux:
 
 bash
 cd ~/Desktop
-git clone https://github.com/TU_USUARIO/Proyecto3-MultiCloud-Azure-BigQuery.git
-cd Proyecto3-MultiCloud-Azure-BigQuery
+git clone https://github.com/MAEL1916/BSG-Proyecto3-MultiCloud.git
+cd BSG-Proyecto3-MultiCloud
 Windows:
 
 cmd
 cd %USERPROFILE%\Desktop
-git clone https://github.com/TU_USUARIO/Proyecto3-MultiCloud-Azure-BigQuery.git
-cd Proyecto3-MultiCloud-Azure-BigQuery
+git clone https://github.com/MAEL1916/BSG-Proyecto3-MultiCloud.git
+cd BSG-Proyecto3-MultiCloud
 3.2 Crear archivo .env
 
-Copia el archivo de ejemplo:
+Copiar archivo de ejemplo:
+
 Mac/Linux:
 
 bash
@@ -271,7 +282,8 @@ Windows:
 
 cmd
 copy .env.example .env
-Abre .env en tu editor favorito:
+Abrir .env en tu editor:
+
 Mac:
 
 bash
@@ -280,8 +292,9 @@ Windows:
 
 cmd
 code .env
-Completa con tus credenciales:
-bash
+Completar con tus credenciales:
+
+env
 # Azure Blob Storage
 AZURE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=TU_STORAGE_ACCOUNT;AccountKey=TU_ACCOUNT_KEY;EndpointSuffix=core.windows.net
 AZURE_CONTAINER_NAME=source-data
@@ -291,7 +304,7 @@ GCP_PROJECT_ID=tu-proyecto-gcp
 BQ_DATASET_ID=proyecto3_dw
 BQ_TABLE_ID=spotify_wrapped_2025_top50_artists
 BQ_LOCATION=us-central1
- IMPORTANTE:
+IMPORTANTE:
 
 Reemplaza TU_STORAGE_ACCOUNT con el nombre de tu storage account de Azure
 Reemplaza TU_ACCOUNT_KEY con el Access Key que copiaste en el Paso 1.4
@@ -306,9 +319,13 @@ Windows:
 
 cmd
 pip install -r requirements.txt
-Captura de referencia:
+Capturas de referencia:
 
 ![Instalación de requirements](docs/screenshots/install-requirements.png)
+
+Verificación de librerías de GCP instaladas:
+
+![Requirements GCP Instalados](docs/screenshots/requirements-gcp.png)
 
 Output esperado:
 
@@ -334,9 +351,9 @@ dir
 type .env
 Asegúrate de que:
 
- Existe el archivo azure_to_bigquery.py
- El archivo .env tiene todas las credenciales
- La carpeta data/ contiene el CSV
+Existe el archivo azure_to_bigquery.py
+El archivo .env tiene todas las credenciales
+La carpeta data/ contiene el CSV
 4.2 Ejecutar el script
 
 Mac/Linux:
@@ -354,7 +371,9 @@ Captura de referencia:
 Output esperado:
 
 Code
+════════════════════════════════════════════════
  Pipeline Multi-Cloud: Azure Blob → Google BigQuery
+════════════════════════════════════════════════
 
  Conectando a Azure Blob Storage...
    Container: 'source-data'
@@ -362,7 +381,7 @@ Code
  Buscando archivos CSV...
  Archivos CSV encontrados: 1
 
-🔧 Conectando a BigQuery...
+ Conectando a BigQuery...
    Proyecto: proyecto3-mael-1916
    Dataset: proyecto3_dw
    Tabla: spotify_wrapped_2025_top50_artists
@@ -432,8 +451,7 @@ Resultado esperado:
 Rank	Artist	Listeners (M)	Genre	Country
 1	The Weeknd	110.4	Pop	Canada
 2	Taylor Swift	107.5	Pop	USA
-
-Más queries disponibles en: sql/queries_validacion.sql
+Nota: Más queries disponibles en: sql/queries_validacion.sql
 
 Troubleshooting
 
@@ -485,7 +503,7 @@ Causa: El dataset no existe en BigQuery.
 Solución:
 
 bash
-bq mk --dataset --location=us-central1 TU_PROYECTO_ID:Nombre de tu proyecto
+bq mk --dataset --location=us-central1 TU_PROYECTO_ID:proyecto3_dw
 El script no encuentra el archivo .env
 
 Causa: Estás ejecutando el script desde otra carpeta.
@@ -501,3 +519,58 @@ cd ~/Desktop/BSG_modulo6/Proyecto3
 
 # Ejecutar script
 python3 azure_to_bigquery.py
+Estructura del Proyecto
+
+Code
+Proyecto3/
+├── README.md
+├── .env.example
+├── .gitignore
+├── requirements.txt
+├── azure_to_bigquery.py
+├── data/
+│   └── spotify_wrapped_2025_top50_artists.csv
+├── docs/
+│   └── screenshots/
+│       ├── azure-console.png
+│       ├── storage-accounts.png
+│       ├── detalles-storage-account.png
+│       ├── container.png
+│       ├── container-detail.png
+│       ├── source-data-azure.png
+│       ├── gcp-console.png
+│       ├── gcp-crear-proyecto.png
+│       ├── crear-proyecto-gcp-1.png
+│       ├── proyecto-consola-gcp.png
+│       ├── menu-gcp.png
+│       ├── bigquery-gcp.png
+│       ├── dataset-bigquery.png
+│       ├── gcp-terminal.png
+│       ├── gcp-project-configure.png
+│       ├── iam-cuentas-servicios.png
+│       ├── proyecto3-loader.png
+│       ├── install-requirements.png
+│       ├── requirements-gcp.png
+│       ├── script-azure-gcp.png
+│       ├── bigquery-spotify-wrapped.png
+│       ├── count-sql-gcp.png
+│       ├── query-top10-gcp.png
+│       └── diagrama-flujo-proyecto3.jpg
+└── sql/
+    └── queries_validacion.sql
+Conclusiones
+
+Este proyecto demuestra la implementación exitosa de un pipeline multi-cloud que:
+
+Integra servicios de Azure y Google Cloud Platform
+Automatiza la transferencia de datos entre nubes
+Utiliza tecnologías modernas de procesamiento de datos
+Implementa mejores prácticas de seguridad (credenciales en .env)
+Proporciona validación completa de datos cargados
+Tecnologías dominadas:
+
+Azure Blob Storage
+Google BigQuery
+Python 3.13
+Pandas
+Google Cloud SDK
