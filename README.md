@@ -574,3 +574,7 @@ Google BigQuery
 Python 3.13
 Pandas
 Google Cloud SDK
+
+git add README.md
+git commit -m "fix: Corregir formato del README (bloques de código)"
+git push origin main
