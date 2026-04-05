@@ -29,7 +29,7 @@ Este proyecto implementa un **pipeline de datos multi-cloud** que transfiere dat
 
 ##  Arquitectura
 
-![Arquitectura Multi-Cloud](docs/screenshots/Diagrama%20de%20Flujo%20proyecto%203.jpg)
+![Arquitectura Multi-Cloud](docs/screenshots/diagrama-flujo-proyecto3.jpg)
 
 **Componentes:**
 - **Origen:** Azure Blob Storage (Container: `source-data`)
@@ -111,11 +111,11 @@ Redundancy: LRS (Locally-redundant storage)
 Clic en "Review + create" → "Create"
 Captura de referencia:
 
-![Azure Portal Home](docs/screenshots/Azure%20console.png)
+![Azure Portal Home](docs/screenshots/azure-console.png)
 
-![Storage Accounts List](docs/screenshots/storage%20accounts.png)
+![Storage Accounts List](docs/screenshots/storage-accounts.png)
 
-![Storage Account Details](docs/screenshots/detalles%20storage%20account.png)
+![Storage Account Details](docs/screenshots/detalles-storage-account.png)
 
 1.2 Crear Container
 
@@ -126,7 +126,7 @@ Public access level: Private
 Clic en "Create"
 Captura de referencia:
 
-![Containers List](docs/screenshots/Container.png)
+![Containers List](docs/screenshots/container.png)
 
 1.3 Subir archivo CSV
 
@@ -155,11 +155,11 @@ Nombre del proyecto: tu nombre único
 Clic en "Create"
 Captura de referencia:
 
-![GCP Console Home](docs/screenshots/gcp%20console.png)
+![GCP Console Home](docs/screenshots/gcp-console.png)
 
-![Crear Proyecto GCP](docs/screenshots/gcp%20crear%20proyecto.png)
+![Crear Proyecto GCP](docs/screenshots/gcp-crear-proyecto.png)
 
-![Proyecto Seleccionado](docs/screenshots/PROYECTO%20CONSOLA%20GCP.png)
+![Proyecto Seleccionado](docs/screenshots/proyecto-consola-gcp.png)
 
 2.2 Habilitar BigQuery API
 
@@ -169,7 +169,7 @@ Busca: BigQuery API
 Clic en "Enable"
 Captura de referencia:
 
-![Menú GCP](docs/screenshots/MENU%20HAMBUERGA%20GCP.png)
+![Menú GCP](docs/screenshots/menu-gcp.png)
 
 2.3 Crear Dataset en BigQuery
 
@@ -191,9 +191,9 @@ Reemplaza PROYECTO_ID con tu ID de proyecto GCP.
 
 Captura de referencia:
 
-![BigQuery Workspace](docs/screenshots/BIGQUERY%20GCP.png)
+![BigQuery Workspace](docs/screenshots/bigquery-gcp.png)
 
-![Dataset Details](docs/screenshots/dataset%20bigquery.png)
+![Dataset Details](docs/screenshots/dataset-bigquery.png)
 
 2.4 Configurar autenticación con gcloud
 
@@ -222,9 +222,9 @@ Reemplaza PROYECTO_ID con tu ID de proyecto (ej: proyecto3-mael-1916)
 
 Captura de referencia:
 
-![Terminal gcloud auth](docs/screenshots/gcp%20terminal.png)
+![Terminal gcloud auth](docs/screenshots/gcp-terminal.png)
 
-![Terminal set project](docs/screenshots/gcp%20project%20configure%20.png)
+![Terminal set project](docs/screenshots/gcp-project-configure.png)
 
 2.5 Crear Service Account (Opcional, si necesitas JSON key)
 
@@ -240,9 +240,9 @@ BigQuery Job User
 Clic en "Done"
 Captura de referencia:
 
-![IAM Service Accounts](docs/screenshots/IAM%20CUENTAS%20Y%20SERVICIOS.png)
+![IAM Service Accounts](docs/screenshots/iam-cuentas-servicios.png)
 
-![Service Account Details](docs/screenshots/PROYECTO%203%20LOADER%20MAEL.png)
+![Service Account Details](docs/screenshots/proyecto3-loader.png)
 
 PASO 3: Configuración Local
 
@@ -308,7 +308,7 @@ cmd
 pip install -r requirements.txt
 Captura de referencia:
 
-![Instalación de requirements](docs/screenshots/instal%20reuqiriments.png)
+![Instalación de requirements](docs/screenshots/install-requirements.png)
 
 Output esperado:
 
@@ -349,7 +349,7 @@ cmd
 python azure_to_bigquery.py
 Captura de referencia:
 
-![Ejecución del script](docs/screenshots/scrip%20azure%20a%20gcp.png)
+![Ejecución del script](docs/screenshots/script-azure-gcp.png)
 
 Output esperado:
 
@@ -389,7 +389,7 @@ Clic en la tabla spotify_wrapped_2025_top50_artists
 Verás el esquema y preview de datos
 Captura de referencia:
 
-![BigQuery Tabla Preview](docs/screenshots/bigquery%20spotify%20wrapped.png)
+![BigQuery Tabla Preview](docs/screenshots/bigquery-spotify-wrapped.png)
 
 5.2 Ejecutar queries de validación
 
@@ -402,7 +402,7 @@ Resultado esperado: 50
 
 Captura de referencia:
 
-![Query Count](docs/screenshots/count%20sql%20gcp.png)
+![Query Count](docs/screenshots/count-sql-gcp.png)
 
 Query 2: Ver Top 10 artistas
 
@@ -413,7 +413,7 @@ ORDER BY wrapped_2025_rank
 LIMIT 10;
 Captura de referencia:
 
-![Query Top 10](docs/screenshots/query%20top%2010%20gcp.png)
+![Query Top 10](docs/screenshots/query-top10-gcp.png)
 
 Query 3: Top 5 artistas por oyentes
 
