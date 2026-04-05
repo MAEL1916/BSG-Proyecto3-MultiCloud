@@ -1,0 +1,4 @@
+azure-storage-blob==12.28.0
+google-cloud-bigquery==3.25.0
+python-dotenv==1.0.0
+pandas==2.2.0
