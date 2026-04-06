@@ -67,10 +67,6 @@ def transfer_blobs_to_s3():
             
         except Exception as e:
             print(f"          Error: {str(e)}\n")
-    
-    print("=" * 60)
-    print("🎉 Transferencia completada exitosamente")
-    print("=" * 60)
 
 
 if __name__ == "__main__":
