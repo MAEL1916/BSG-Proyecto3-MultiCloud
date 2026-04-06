@@ -1,5 +1,14 @@
 # Proyecto 3: Pipeline Multi-Cloud (Azure Blob Storage → Google BigQuery)
 
+##  Video de Demostración
+
+**Ver presentación completa del proyecto:** [Demostración en YouTube](https://youtu.be/5jkq7MwozCo)
+
+> Duración: 8:35 minutos  
+> Incluye: Ejecución del pipeline en vivo, validación de datos en BigQuery y recorrido por el código
+
+---
+
 **Autor:** Elias Martinez  
 **Curso:** Data Engineering - BSG 2026  
 
